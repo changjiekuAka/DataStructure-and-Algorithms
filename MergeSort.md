@@ -24,3 +24,33 @@ void Process(int arr[],int L,int R)
 ```
 
 #### 归并排序
+
+```c++
+void merge(int arr[],int L,int mid,int R)
+{
+    if(L >= R) return;
+    
+    int p1 = L;
+    int p2 = mid + 1;
+    int help[R - L];
+    int i = 0; 
+    while(p1 <= mid && p2 <= L)
+    {
+        help[i++] = arr[p1] < arr[p2] ? arr[p1++]:arr[p2++];
+    }
+    while(p1 <= m)
+    {
+        help[i++] = arr[p1++]; 
+    }
+    while(p2 <= R)
+    {
+        help[i++] = arr[p2++];
+    }
+    for(i = 0;i < R;i++)
+    {
+        arr[L + i] = help[i];
+    }
+    
+}
+```
+
