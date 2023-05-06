@@ -33,7 +33,7 @@ void PreOrderUnRecur(Node* root)
 }
 ```
 
-## 后续
+## 后序
 
 ### 思路
 
@@ -82,3 +82,46 @@ void PostOrderUnRecur(Node* root)
 > 先序遍历 -- -- 头左右 -- -- 要求入栈顺序：头右左
 >
 > 后序遍历 -- -- 左右头 -- -- 要求入栈顺序：头左右 -- -- 得到出栈顺序：头右左 -- -- help反转出栈顺序
+
+## 中序
+
+### 思路
+
+首先根节点的所有左节点入栈
+
+- `pop`节点`Top`，把`Top`节点的右子树的左节点入栈
+
+重复上面的步骤，直到栈为空
+
+### 实现
+
+```c++
+void InOrderUnRecur(Node* root)
+{
+    if(root != nullptr)
+    {
+        stack<Node*> cons;
+        Node* cur = root;
+        while(!cons.empty() || cur != nullptr)
+        {
+            if(cur == nullptr)
+            {
+                Node* Top = cons.top();
+                cons.pop();
+                cout << Top->value <<" ";
+                cur = Top->right;
+            }
+            else
+            {
+                cons.push(cur);
+                cur = cur->left;
+            }
+        }
+    }
+}
+    
+```
+
+### 总结
+
+对于一个节点`Node`和它的左节点`LNode`、右节点`RNode`，出栈的顺序： `LNode` -> `Node` -> `RNode`，也可以说是处理这个节点的顺序
