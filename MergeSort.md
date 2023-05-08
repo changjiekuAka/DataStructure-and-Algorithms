@@ -14,7 +14,7 @@ void Process(int arr[],int L,int R)
 {
     if(L >= R) return;
     
-    int mid = (L + (L+R)>>1);		/******计算中间的数******/
+    int mid = (L + ((R - L) >> 1));		/******计算中间的数******/
     
     Process(arr,L,mid);				/******递归划分******/
     Process(arr,mid + 1,R);
@@ -32,7 +32,7 @@ void merge(int arr[],int L,int mid,int R)
     
     int p1 = L;
     int p2 = mid + 1;
-    int help[R - L];
+    int help[R - L + 1];
     int i = 0; 
     while(p1 <= mid && p2 <= L)
     {
